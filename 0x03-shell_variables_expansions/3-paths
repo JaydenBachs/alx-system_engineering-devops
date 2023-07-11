@@ -1,3 +1,4 @@
 #!/bin/bash
-count=$(( $(echo $PATH | grep -o ":/" | wc -l) + 1 ))
+clean_path=$(echo $PATH | awk -F':' '!a[$0]++ && $0 != ""')
+count=$(echo "$clean_path" | awk -F':' '{print NF}')
 echo $count
